@@ -61,8 +61,8 @@
                     <div style = "flex:1"> <p> Rs 2300</p> </div>
                     <div style = "flex:1"> <p> x2 </p></div>
                 </div>
-                <h4>Item : 2</h4>
-                <h4>Total : 4600</h4>
+                <h4>Item : {{order.get_cart_items}}</h4>
+                <h4>Total : {{order.get_cart_total|floatformat : 2}}</h4>
 			</div>
 
 		</div>
