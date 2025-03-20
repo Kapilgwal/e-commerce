@@ -16,7 +16,7 @@
             <h5>Items: <strong>{{ order.get_cart_items }}</strong></h5>
           </th>
           <th>
-            <h5>Total: <strong>Rs {{ order.get_cart_total }}</strong></h5>
+            <h5>Total: <strong>Rs {{ order.get_cart_total|floatformat:2 }}</strong></h5>
           </th>
           <th>
             <a
@@ -45,18 +45,30 @@
       {% for item in items %}
       <div class="cart-row">
         <div style="flex: 2">
-          <img class="row-image" src="{{ item.product.imageURL }}" alt="">
+          <img class="row-image" src="{{ item.product.imageURL }}" alt="{{ item.product.name }}">
         </div>
         <div style="flex: 2">{{ item.product.name }}</div>
-        <div style="flex: 1">Rs {{ item.product.price | floatformat:2 }}</div>
+        <div style="flex: 1">Rs {{ item.product.price|floatformat:2 }}</div>
         <div style="flex: 1">
           <p class="quantity">{{ item.quantity }}</p>
           <div class="quantity">
-            <img data-product = {{item.prduct.id}} data-action = "add" class="chg-quantity update-cart" src="{% static 'images/arrow-up.png' %}" alt="">
-            <img data-product = {{item.prduct.id}} data-action = "remove" class="chg-quantity update-cart" src="{% static 'images/arrow-down.png' %}" alt="">
+            <button 
+              data-product="{{ item.product.id }}" 
+              data-action="add" 
+              class="btn btn-outline-secondary add-btn update-cart"
+            >
+              +
+            </button>
+            <button 
+              data-product="{{ item.product.id }}" 
+              data-action="remove" 
+              class="btn btn-outline-secondary add-btn update-cart"
+            >
+              -
+            </button>
           </div>
         </div>
-        <div style="flex: 1">Rs {{ item.get_total }}</div>
+        <div style="flex: 1">Rs {{ item.get_total|floatformat:2 }}</div>
       </div>
       {% endfor %}
     </div>
